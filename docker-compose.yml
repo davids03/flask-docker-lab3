@@ -1,0 +1,27 @@
+version: '3.9'
+
+services:
+
+  # Nombre del servicio: "web"
+  web:
+    # Construye la imagen usando el Dockerfile de esta carpeta
+    build: .
+
+    # Nombre del contenedor que verás en Docker Desktop
+    container_name: flask_lab3
+
+    # Mapeo de puertos: puerto_de_tu_PC:puerto_del_contenedor
+    # Accedes desde localhost:5000 en tu navegador
+    ports:
+      - "5000:5000"
+
+    # Volumen: sincroniza tu carpeta local con el contenedor
+    # Cualquier cambio que hagas en el código se refleja al instante
+    # sin necesidad de reconstruir la imagen
+    volumes:
+      - .:/app
+
+    # Variables de entorno para Flask
+    environment:
+      - FLASK_ENV=development
+      - FLASK_DEBUG=1
